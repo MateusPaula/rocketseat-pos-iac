@@ -1,18 +1,12 @@
 import * as aws from "@pulumi/aws";
 
 const firstBucket = new aws.s3.BucketV2("first-bucket", {
-    bucket: 'first-bucket',
+    bucket: 'first-bucket-pos-ftr-iac',
     tags: {
         IAC: "true",
     }
 });
 
-const secondBucket = new aws.s3.BucketV2("second-bucket", {
-    bucket: 'second-bucket',
-    tags: {
-        IAC: "true",
-    }
-});
 
 const ecr = new aws.ecr.Repository("primeir-ecr", {
     name: 'primeiro-ecr-pos',
@@ -23,12 +17,8 @@ const ecr = new aws.ecr.Repository("primeir-ecr", {
 })
 
 export const firstBucketName = firstBucket.id;
-export const firstBucketInfo = firstBucket.bucket;
+export const firstBucketRegion = firstBucket.region;
 export const firstBucketArn = firstBucket.arn;
-
-export const secondBucketName = secondBucket.id;
-export const secondBucketInfo = secondBucket.bucket;
-export const secondBucketArn = secondBucket.arn;
 
 
 export const ecrName = ecr.name;
